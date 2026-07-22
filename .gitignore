@@ -1,0 +1,16 @@
+# catkin编译文件
+build/
+devel/
+install/
+*.log
+*.bag
+# 系统缓存
+.DS_Store
+__pycache__/
+*.pyc
+# 临时地图文件
+maps/*.pgm
+maps/*.yaml
+# 编辑器配置
+.vscode/
+.rviz
