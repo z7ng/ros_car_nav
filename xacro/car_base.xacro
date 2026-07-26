@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="shturl.cc/WVRTShFpr6hsVc2Kdmi" name="diff_car">
+<robot xmlns:xacro="shturl.cc/jYvEg6azYARJHBv" name="diff_car">
+
   <xacro:property name="wheel_radius" value="0.05"/>
   <xacro:property name="wheel_width" value="0.03"/>
   <xacro:property name="chassis_length" value="0.3"/>
@@ -98,5 +99,20 @@
     <child link="caster_wheel"/>
     <origin xyz="0.12 0 -0.02"/>
   </joint>
+
+  <!-- ========= Gazebo配置全部移入robot标签内部 ========= -->
+  <xacro:include filename="$(find car_nav)/xacro/gazebo_plugin.xacro"/>
+  <xacro:gazebo_car_plugins namespace="/"/>
+
+  <gazebo reference="base_link">
+      <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="left_wheel">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="right_wheel">
+      <material>Gazebo/Black</material>
+  </gazebo>
+
 </robot>
 

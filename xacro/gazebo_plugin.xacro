@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="shturl.cc/kmBbFh6CqdVV2La">
+<xacro:macro name="gazebo_car_plugins" params="namespace:=/">
+    <gazebo>
+        <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <rosNamespace>${namespace}</rosNamespace>
+            <leftJoint>left_wheel_joint</leftJoint>
+            <rightJoint>right_wheel_joint</rightJoint>
+            <wheelSeparation>0.40</wheelSeparation>
+            <wheelDiameter>0.10</wheelDiameter>
+            <wheelTorque>10</wheelTorque>
+            <wheelAcceleration>2.0</wheelAcceleration>
+            <updateRate>30</updateRate>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <robotBaseFrame>base_link</robotBaseFrame>
+            <publishOdomTF>true</publishOdomTF>
+            <publishWheelTF>true</publishWheelTF>
+        </plugin>
+    </gazebo>
+</xacro:macro>
+</robot>
+

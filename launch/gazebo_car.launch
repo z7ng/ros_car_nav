@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- 启动Gazebo空白仿真世界 -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="worlds/empty.world"/>
+        <arg name="gui" value="true"/>
+        <arg name="verbose" value="false"/>
+    </include>
+
+    <!-- 加载小车URDF模型 -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find car_nav)/xacro/car_base.xacro"/>
+
+    <!-- 将小车模型生成到Gazebo仿真环境 -->
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_car"
+          args="-urdf -model diff_car -param robot_description -x 0 -y 0 -z 0.1"
+          output="screen"/>
+
+    <!-- 发布机器人TF坐标 -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen"/>
+
+    <!-- 键盘遥控节点 -->
+    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="key_control" output="screen"/>
+</launch>
+
